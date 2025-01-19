@@ -1,5 +1,8 @@
+def sort_on(letters):
+    return letters['count']
+
 def main():
-    with open("/Users/janoosz/Python_projects/github.com/Yanoosz/bookbot/books/frankenstein.txt") as f:
+    with open("books/frankenstein.txt") as f:
         file_contents = f.read()
 
     words = file_contents.split()
@@ -18,9 +21,11 @@ def main():
         if key.isalpha():
             letters.append({"character": key, "count": value})
 
+    letters.sort(reverse=True, key=sort_on)
+
     print("--- Begin report of books/frankenstein.txt ---")
     print(f"{words_count} words found in the document")
     for item in letters:
-        print(f"The '{item['character']}' character was found '{item['count']}' times")
+        print(f"The {item['character']} character was found {item['count']} times")
 
 main()
